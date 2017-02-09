@@ -11,6 +11,13 @@ map '/lobster' do
   run Rack::Lobster.new
 end
 
+map '/status' do
+  status = proc do |env|
+    [200, {}, env.inspect]
+  end
+  run status
+end
+
 map '/' do
   welcome = proc do |env|
     [200, { "Content-Type" => "text/html" }, [<<WELCOME_CONTENTS
