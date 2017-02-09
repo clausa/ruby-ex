@@ -13,7 +13,7 @@ end
 
 map '/status' do
   status = proc do |env|
-    [200, {}, env.inspect]
+    [200, { "Content-Type" => "text/html" }, [`hostname`]]	
   end
   run status
 end
